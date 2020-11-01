@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+    <style>
+
+
+        body{
+            font-family: 'Libre Baskerville', serif;
+            margin: 0px;
+            overflow: hidden;
+            text-align: center;
+            padding: 0px;
+            cursor: url(cur01.cur), auto;
+        }
+
+        .know{
+            
+            font-size: 7.3vw;
+            font-weight: 900;
+            text-shadow: -1px 0 #F2F1F6, 0 1px #F2F1F6, 1px 0 #F2F1F6, 0 -1px #F2F1F6;
+            color: #787878;
+            text-align: left;
+            margin-left: 30%;
+            position: relative;
+            top: 5vh;
+            left: -10vw;
+            z-index: 3;
+        }
+
+        .snake{
+            position: static;
+            padding-left: 0;
+            padding-top: 0;
+            margin: 0;
+        }
+
+        .back{
+            position: relative;
+            top: -1200px;
+            left: 0%;
+            z-index: 2;
+            opacity: 100%;
+        }
+        .about{
+            
+            position: relative;
+            top: 5vh;
+            left: -10vw;
+            color: red;
+            text-align: left;
+            margin-left: 30%;
+            font-size: 7.3vw;
+            font-weight: 900;
+            z-index: 3; 
+        }
+        
+        .tatu{
+            position: relative;
+            top: -60vh;
+            left: -40vw;
+            color: white;
+            font-size: 1vw;
+            font-weight: 500;
+            z-index: 3; 
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .day{
+            position: relative;
+            top: -63vh;
+            left: 40vw;
+            color: white;
+            font-size: 1vw;
+            font-weight: 500;
+            z-index: 3; 
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .ani {
+            position: absolute;
+            bottom: 0vh;
+            z-index: 1;
+            opacity: 40%;
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <!--드래그 java-->
+
+    <script type='text/javascript'>
+    var img_L = 0;
+    var img_T = 0;
+    var targetObj;
+    
+    function getLeft(o){
+         return parseInt(o.style.left.replace('px', ''));
+    }
+    function getTop(o){
+         return parseInt(o.style.top.replace('px', ''));
+    }
+    
+    // 이미지 움직이기
+    function moveDrag(e){
+         var e_obj = window.event? window.event : e;
+         var dmvx = parseInt(e_obj.clientX + img_L);
+         var dmvy = parseInt(e_obj.clientY + img_T);
+         targetObj.style.left = dmvx +"px";
+         targetObj.style.top = dmvy +"px";
+         return false;
+    }
+    
+    // 드래그 시작
+    function startDrag(e, obj){
+         targetObj = obj;
+         var e_obj = window.event? window.event : e;
+         img_L = getLeft(obj) - e_obj.clientX;
+         img_T = getTop(obj) - e_obj.clientY;
+    
+         document.onmousemove = moveDrag;
+         document.onmouseup = stopDrag;
+         if(e_obj.preventDefault)e_obj.preventDefault();
+    }
+    
+    // 드래그 멈추기
+    function stopDrag(){
+         document.onmousemove = null;
+         document.onmouseup = null;
+    }
+    </script>
+
+    </body>
+
+    <div style='position:absolute; left:0px; top:0px; cursor:pointer; cursor:hand' onmousedown='startDrag(event, this)'>
+   </div>
+
+
+   <!--text-->
+
+   <div class="know">
+       All<br>The Thing
+   </div>
+
+   <div class="about">
+    She<br>Said
+  </div>
+
+ <div class="tatu">
+    t.A.T.u.
+ </div>
+ <div class="day">
+    19 8 2002
+ </div>
+
+ <!--배경 이미지-->
+
+   <div class="back">
+       
+   </div>
+   <div>
+       <img src="back.png" style="max-width:100%; height: 100%; opacity: 100%; position: relative; bottom: 1100PX;">
+   </div>
+
+<!--배경 애니메이션-->
+<div class="ani">
+    <video src="Wave.mp4" width="2560" height="1440" autoplay loop muted></video>
+</div>
+
+
+   <!--뱀 이미지-->
+
+
+    <div class="snake">
+        <img src="snake 01.png"
+        style="max-width: 100%; height: auto; position:absolute; left:-600px; top:800px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4; transform: rotate(20deg);"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 02.png"
+        style="max-width: 10%; height: auto; position:absolute; left:500px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4; transform: rotate(-50deg);"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 03.png"
+        style="max-width: 30%; height: auto; position:absolute; left:200px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4; transform: rotate(-50deg);"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 05.png"
+        style="max-width: 30%; height: auto; position:absolute; left:600px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4;"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 06.png"
+        style="max-width: 20%; height: auto; position:absolute; left:1800px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4;"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 07.png"
+        style="max-width: 50%; height: auto; position:absolute; left:1600px; top:350px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4; transform: rotate(30deg)"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 08.png"
+        style="max-width: 30%; height: auto; position:absolute; left:500px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4;"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 09.png"
+        style="max-width: 30%; height: auto; position:absolute; left:800px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4;"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 10.png"
+        style="max-width: 100%; height: auto; position:absolute; left:1500px; top:50px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4;"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 11.png"
+        style="max-width: 100%; height: auto; position:absolute; left:1000px; top:300px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4; transform: rotate(-30deg);"
+        onmousedown="startDrag(event, this)" border="0">
+        <img src="snake 12.png"
+        style="max-width: 100%; height: auto; position:absolute; left:-500px; top:800px; cursor:url(cur02.cur), auto; cursor:hand; z-index: 4;"
+        onmousedown="startDrag(event, this)" border="0">
+   </div>
+
+</html>
